@@ -224,6 +224,7 @@ background: linear-gradient(0deg, rgba(141,170,62,1) 0%, rgba(109,134,40,1) 100%
     right: .1em;
     color:#dcedb9;
     z-index: 5;
+    transition: 1s;
 }
 
 #info:hover {
@@ -268,13 +269,14 @@ a:hover {
 
 .menu {
     position: fixed;
-    right: 5px; top:5px;
+    right: .1em; top: .1em;
     height: 30px;
-    padding:.4em;
+    padding:.3em;
     padding-top: .6em;
     border-radius: 25%;
     background-color: rgba(0,0,0,0.2);
     text-align: right;
+    transition: .2s;
 }
 
 .menu span {
@@ -283,7 +285,7 @@ a:hover {
     font-size: 10px;
     height: 40px;
     width: 40px;
-    padding: 5px;
+    padding: 4px;
     text-align: center;
     border-radius:25%;
 }
@@ -297,4 +299,8 @@ a:hover {
 
 .menu:hover > span {
     background-color: rgba(255,255,255,.8);
+}
+
+.keyboard div em span {
+    color:red;
 }
