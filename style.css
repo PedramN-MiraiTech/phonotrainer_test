@@ -133,6 +133,10 @@ button {
     .keyboard div span {
         font-size: small !important;
     }
+
+    .menu span {
+        font-size:8px;
+    }
 }
 
 button:hover {
