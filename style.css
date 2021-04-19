@@ -1,0 +1,261 @@
+* {
+    padding: 0; margin: 0;
+    font-family: sans-serif;
+}
+
+*::selection {
+    background-color: #DCEDB9;
+}
+/* html {
+    background-color: #8DAA3E;
+} */
+
+
+body {
+    background-color: #8DAA3E;
+    background:url('bg.png') no-repeat bottom / cover ;
+    @media (max-width: 768px) { 
+     background-size: contain;
+ }
+    background-attachment: fixed;
+    /* background-size: ; */
+}
+
+.main .container h1::first-letter {
+    text-transform: uppercase; 
+}
+
+.main .container h1 {
+    font-size: 3em;
+    text-align: center;
+    border-bottom: 2px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+
+}
+
+.main .container h1 span { 
+    background:#8DAA3E;
+    padding:0 10px; 
+}
+
+#hnt {
+    opacity: 0.8;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+
+}
+
+.container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    /* border: solid white 1px; */
+background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(255,255,255,.4) 0%, rgba(141,170,62,0) 94%);
+}
+
+input {
+    font-size: 1.1em;
+    color: #576A25;
+    padding: .6em .3em .6em .3em;
+    border-radius: .8em;
+    max-width:  800px;
+    min-width: 50%;
+    width: 75%;
+    margin-left: -15px;
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.25),
+   -6px -6px 10px 0 rgba(255, 255, 255, 0.3);
+
+   @media (max-width:691px) {
+       width: 20px;
+   }
+}
+
+#ind {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 1.3em; height: 1.3em; 
+    background-color:gray;
+}
+
+div {
+    margin: .8em;
+}
+
+button {
+    max-width: 100px;
+    color: white;
+    font-size: 1.1em;
+    text-shadow: 0px 0px 1px white;
+    border-radius: 10px;
+    /* margin-left: 1.4em; */
+    padding: .8em;
+    background: linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25),
+   -3px -3px 4px 0 rgba(255, 255, 255, 0.3);
+   transition: .5s;
+}
+
+@media (max-width:977px) {
+    button {
+        width: 30px;
+        height: 30px;
+        font-size: .8em;
+        padding: 2px;
+    }
+
+    input {
+        padding: .2em;
+        height:20px;
+        width: 55%;
+    }
+
+    .container {
+        width: 75%;
+    }
+    .keyboard div span {
+        width: .2em;
+        padding: .1em;
+        font-size: .1em;
+    }
+}
+
+button:hover {
+    background: linear-gradient(135deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25));
+    text-shadow: none;
+    color: #DCEDB9;
+}
+
+button:active {
+    color:#576A25;
+}
+
+#chck {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.prompt {
+    /* width: 100%; */
+    display: flex;
+    justify-content:center;
+    padding: 0;
+}
+
+.prompt div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: space-around;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.keyboard {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 380px;
+    border: thin white .4em;
+    border-color: white gray gray white;
+    border-radius: 25px;
+    background-color: #121716;
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.25),
+   -6px -6px 10px 0 rgba(255, 255, 255, 0.3);
+}
+
+.keyboard div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    position: relative;
+    border-radius: 25px;
+    padding: .4em;
+    width: 95%;
+    height: 90%;
+    z-index: 2;
+    border: solid white .1em;
+    border-color: white gray gray white;
+background: rgb(141,170,62);
+background: linear-gradient(0deg, rgba(141,170,62,1) 0%, rgba(109,134,40,1) 100%);
+
+}
+
+#info {
+    font-size:1em;
+    position: fixed;
+    bottom: .1em;
+    right: .1em;
+    color:#dcedb9;
+    z-index: 5;
+}
+
+#info:hover {
+    cursor: pointer;
+    font-size:1.3em;
+}
+
+a {
+    color:#dcedb9;
+}
+
+a:hover {
+    text-shadow: 0px 0px 1px #dcedb9;
+    color:white;
+}
+
+/* @media (min-width: 691px) {
+  .hidden-ss {
+    display: none !important;
+  }
+} */
+
+
+.keyboard div span {
+    display: inline-block;
+    background-color: #121716;
+    border-radius: 25px;
+    color:#dcedb9;
+    font-size: large;
+    width: 1.2em;
+    padding: .6em; margin: .2em;
+    text-align: center;
+    background: linear-gradient(-45deg, rgb(0, 0, 0), rgb(46, 46, 46));
+}
+
+
+.keyboard div span:hover {
+    cursor: pointer;
+    background: linear-gradient(-45deg,rgb(46, 46, 46),rgb(0, 0, 0));
+    color:white;
+}
+
+.menu {
+    position: fixed;
+    right: 5px; top:5px;
+    height: 30px;
+    padding:.4em;
+    padding-top: .6em;
+    border-radius: 25%;
+    background-color: rgba(0,0,0,0.3);
+    text-align: right;
+}
+
+.menu span {
+    position: relative;
+    background-color: rgba(255,255,255,.5);
+    font-size: 10px;
+    height: 40px;
+    width: 40px;
+    padding: 5px;
+    text-align: center;
+    border-radius:25%;
+}
