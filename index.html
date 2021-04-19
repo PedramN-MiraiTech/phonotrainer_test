@@ -45,6 +45,10 @@
                     <span>tʃ</span>
                     <span>dʒ</span>
                     <span>θ</span>
+                    <span>f</span>
+                    <span>y</span>
+                    <span>h</span>
+                    <span>g</span>
                     <span>ð</span>
                     <span>ʃ</span>
                     <span>λ</span>
@@ -56,7 +60,8 @@
                     <span>ɫ</span>
                     <span>ˌ</span>
                     <span>ˈ</span>
-                    <span>ɝ</span>
+                    <span>ɛ</span>
+                    <span>e</span>
                     <span>d</span>
                     <span>p</span>
                     <span>t</span>
@@ -65,7 +70,6 @@
                     <span>m</span>
                     <span>n</span>
                     <span>k</span>
-                    <span>/</span>
                 </div>
             </div>
         </div>
@@ -101,7 +105,7 @@
 
         btn.addEventListener('click', () => {
             // console.log(document.querySelector('#ans').value)
-            if (input.value == wordsObject[randWord] || input.value == "ca") {
+            if (`/${input.value}/` == wordsObject[randWord] || input.value == "ca") {
                 console.log(`${input.value} was the correct answer. Well done!`)
                 btn.style.backgroundColor = 'green'
                 setTimeout(() => { btn.style.background = btnDefaultStyle }, 1000)
