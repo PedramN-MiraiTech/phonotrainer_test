@@ -304,3 +304,11 @@ a:hover {
 .keyboard div em span {
     color:red;
 }
+
+.keyboard div em span:hover{
+    color:red;
+}
+
+.keyboard div em span:active {
+    color:white;
+}
