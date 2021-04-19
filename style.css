@@ -10,15 +10,26 @@
     background-color: #8DAA3E;
 } */
 
-
+body::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0; left: 0;
+    z-index: -10;
+    background:url('bg.png') no-repeat bottom / cover ;
+    
+}
 body {
     background-color: #8DAA3E;
-    background:url('bg.png') no-repeat bottom / cover ;
-    @media (max-width: 768px) { 
-     background-size: contain;
- }
     background-attachment: fixed;
     /* background-size: ; */
+}
+
+@media (max-width: 768px) { 
+body{
+ background-size: contain;
+}
 }
 
 .main .container h1::first-letter {
@@ -114,14 +125,13 @@ button {
         height:20px;
         width: 55%;
     }
-
+    
     .container {
         width: 75%;
     }
+    
     .keyboard div span {
-        width: .2em;
-        padding: .1em;
-        font-size: .1em;
+        font-size: small !important;
     }
 }
 
