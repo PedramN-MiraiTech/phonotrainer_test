@@ -112,7 +112,21 @@ button {
    transition: .5s;
 }
 
-@media (max-width:977px) {
+@media (max-width:900px){
+    button {
+        width: 30px;
+        height: 30px;
+        font-size: .8em;
+        padding: 2px;
+    }
+    input {
+        padding: .2em;
+        height:20px;
+        width: 65%;
+    }
+}
+
+@media (max-width:677px) {
     button {
         width: 30px;
         height: 30px;
