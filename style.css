@@ -389,7 +389,7 @@ a:hover {
     height: 100%;
     width: 0;
     position: fixed;
-    overflow-x:hidden;
+    overflow-x:auto;
     overflow-y:scroll;
     top: 0; right: 0;
     z-index:10;
@@ -451,6 +451,7 @@ details {
 }
 details p {
     padding-left: .6em;
+    width: 80%;
 }
 
 details::selection, summary::selection {
