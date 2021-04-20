@@ -10,6 +10,71 @@
     background-color: #8DAA3E;
 } */
 
+h2 {
+    text-align: center;
+    padding: .8em;
+}
+
+#overlay{
+    position: fixed;
+    display: block;
+    width: 99%; height: 99%;
+    transform: translate(-50%,-50%);
+    top: 50%; left: 50%;
+    padding: 0; margin: 0;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.99);
+    color:white;
+    transition: 0.5s;
+    display: none;
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+
+#overlay p {
+    font-size: 1.5em;
+    margin-left: 1em;
+    padding-bottom:.3em;
+}
+
+.correct {
+    color: #79d82c;
+}
+
+.wrong {
+    color:#ED4AFF;
+}
+
+.correct , .wrong {
+    font-weight: 500;
+}
+
+#cls-overlay-btn {
+    color:white;
+    font-size:1.8em;
+    text-shadow: 0px 0px 2px white;
+    transform-origin: center center;
+    transition: 0.2s;
+    display: inline-block;
+    position: sticky;
+}
+
+#cls-overlay-btn:hover{
+    cursor: pointer;
+    color:red;
+    text-shadow: 0px 0px 3px red;
+}
+
+#grade {
+    font-size: 2.5em;
+    text-align: center;
+    color:white;
+}
+
+#grade::first-letter {
+
+}
+
 body::before {
     content: '';
     width: 100%;
@@ -17,19 +82,21 @@ body::before {
     position: absolute;
     top:0; left: 0;
     z-index: -10;
-    background:url('bg.png') no-repeat bottom / cover ;
-    
+    background-attachment: fixed;
 }
+
+
 body {
+    background:url('bg.png') no-repeat bottom / cover ;
     background-color: #8DAA3E;
     background-attachment: fixed;
     /* background-size: ; */
 }
 
 @media (max-width: 768px) { 
-body{
- background-size: contain;
-}
+    body {
+        background-size: contain;
+    }
 }
 
 .main .container h1::first-letter {
@@ -66,8 +133,9 @@ body{
     flex-direction: column;
     border-radius: 25px;
     /* border: solid white 1px; */
-background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,.4) 0%, rgba(141,170,62,0) 94%);
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.4) 0%, rgba(141,170,62,0) 94%);
+    transition: 0.5s;
 }
 
 input {
@@ -112,7 +180,7 @@ button {
    transition: .5s;
 }
 
-@media (max-width:900px){
+@media (max-width:960px){
     button {
         width: 30px;
         height: 30px;
@@ -150,6 +218,10 @@ button {
 
     .menu span {
         font-size:8px;
+    }
+
+    /* .popup .popuptext {
+        width: 100px !important; */
     }
 }
 
@@ -223,7 +295,7 @@ background: linear-gradient(0deg, rgba(141,170,62,1) 0%, rgba(109,134,40,1) 100%
     bottom: .1em;
     right: .1em;
     color:#dcedb9;
-    z-index: 5;
+    z-index: 100;
     transition: 1s;
 }
 
@@ -311,4 +383,159 @@ a:hover {
 
 .keyboard div em span:active {
     color:white;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    top: 0; right: 0;
+    z-index:10;
+    /* background-color:#121716 ; */
+    /* background: rgb(18,23,22);
+background: linear-gradient(315deg, rgba(18,23,22,1) 0%, rgba(77,99,40,1) 96%); */
+/* background: rgb(18,23,22);
+background: linear-gradient(315deg, rgba(18,23,22,1) 0%, rgba(39,50,19,1) 96%); */
+background: rgb(18,23,22);
+background: linear-gradient(315deg, rgba(18,23,22,0.9) 0%, rgba(39,50,19,0.9) 96%);
+    transition: 0.5s;
+    margin:0;
+    color: #dcedb9;
+    padding-left: .3em;
+    line-height: 1.2em;
+    scrollbar-width: none;
+}
+
+.sidenav::-webkit-scrollbar {
+    width: 0; height: 0;
+}
+
+#cls-btn {
+    color:white;
+    font-size:1.8em;
+    text-shadow: 0px 0px 2px white;
+    transform-origin: center center;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+#cls-btn:hover {
+    cursor: pointer;
+    color:white;
+    transform: rotate(180deg);
+    text-shadow: 0px 0px 4px white;
+}
+
+summary {
+    font-size: 1.5em;
+    margin-bottom:.8em;
+    display: block;
+
+}
+
+summary:hover {
+    cursor: pointer;
+    color:white;
+    text-shadow: 0px 0px 6px white;
+}
+
+details {
+    max-width: 80%;
+    min-width: 350px;
+    display: block;
+    transition: .2s;
+    margin-bottom: 1em;
+    margin-left: 1.6em;
+}
+details p {
+    padding-left: .6em;
+}
+
+details::selection, summary::selection {
+    background-color: green;
+}
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0; margin-left: -10px}
+  100%  {opacity: 1; margin-left: 0px}
+}
+
+#info:active + #overlay {
+    animation: fade-in .5s ease-in-out;
+}
+
+@keyframes fade-in {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    margin-left:.6em;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }

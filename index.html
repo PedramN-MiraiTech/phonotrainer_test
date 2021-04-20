@@ -11,6 +11,51 @@
 </head>
 
 <body>
+
+    <div id='overlay'>
+        <div id="cls-overlay-btn">&times;</div>
+    </div>
+
+    <div class="sidenav" id="sdnv">
+        <div id="cls-btn">&times;</div>
+        <details>
+            <summary>How was this tool made?</summary>
+            <p>
+                Using python scripts to develop a frequency list then another one to match the json output with a
+                phonetic
+                transcription dictionary the rest is web voodoo. Check my Github for credits.
+            </p>
+        </details>
+
+        <details>
+            <summary>I don't agree with your glyphs...</summary>
+            <p>
+                I did my research before choosing the glyphs. Having said that though, there might be some errors so I
+                suggest that you use github to post your issues.
+            </p>
+        </details>
+        <details>
+            <summary>How to use</summary>
+            <p>
+                There is a menu on the top right corner. It shows your score and which round you are in. At the end of
+                each round you will get a screen showing your results.
+                The keyboard has all the glyphs you'll ever need but you can use your own keyboard too.
+                The <i class="fa fa-question-circle"></i> button is used to get hints, please hower your mouse on it to
+                see the current hint.
+            </p>
+        </details>
+        <details>
+            <summary>Contact</summary>
+            <p>
+            <ul>
+                <li><a href="https://t.me/basedlain">Telegram</a></li>
+                <li><a href="mailto:pedramnaserkhanloo@gmail.com">pedramnaserkhanloo@gmail.com</a></li>
+                <li><a href="mailto:p.naserkhanloo@Mail.sbu.ac.ir">p.naserkhanloo@Mail.sbu.ac.ir</a></li>
+            </ul>
+            </p>
+        </details>
+    </div>
+
     <div class="menu">
         <span title="Score" id="score-panel">S</span>
         <span title="Round" id="round-panel">R</span>
@@ -24,8 +69,12 @@
             <div class="prompt">
                 <div>
                     <input name="answer" id="ans">
-                    <button title="Not yet implemented!" name="hint" id="hnt"><i
-                            class="fa fa-question-circle"></i></button>
+                    <button class="popup" name="hint" id="hnt">
+
+                        <i class="fa fa-question-circle"></i>
+                        <span class="popuptext" id="myPopup">Popup text...</span>
+
+                    </button>
                     <button name="check" id="chck"><i class="fas fa-play"></i></button>
                 </div>
             </div>
@@ -35,7 +84,6 @@
                     <span class="char">ɪ</span>
                     <span class="char">ʊ</span>
                     <span class="char">ə</span>
-                    <span class="char">ɜ</span>
                     <span class="char">ɔ</span>
                     <span class="char">ʌ</span>
                     <span class="char">ɑ</span>
@@ -45,18 +93,19 @@
                     <span class="char">tʃ</span>
                     <span class="char">dʒ</span>
                     <span class="char">θ</span>
+                    <span class="char">v</span>
                     <span class="char">f</span>
                     <span class="char">y</span>
                     <span class="char">h</span>
                     <span class="char">g</span>
                     <span class="char">ð</span>
                     <span class="char">ʃ</span>
-                    <span class="char">dʒ</span>
                     <span class="char">æ</span>
                     <span class="char">ŋ</span>
                     <span class="char">ɝ</span>
                     <span class="char">ɹ</span>
                     <span class="char">ɫ</span>
+                    <span class="char">l</span>
                     <span class="char">ˌ</span>
                     <span class="char">ˈ</span>
                     <span class="char">ɛ</span>
@@ -77,7 +126,7 @@
             </div>
         </div>
     </div>
-    <div id="info">Pedram Naserkhanloo | <a href="#"><i class="fab fa-github-alt"></i></a> | <a><i
+    <div id="info">Pedram Naserkhanloo | <a href="#"><i class="fab fa-github-alt"></i></a> | <a id="sdnvbtn"><i
                 class="fa fa-info-circle"></i></a></div>
     <script>
         const words = `
@@ -86,13 +135,22 @@
         let score = -1
         let round = 0
         let question = 0
+        let answers = []
         const wordsObject = JSON.parse(words);
         const keys = Object.keys(wordsObject)
         const btnDefaultStyle = `linear-gradient(-45deg, rgba(0,0,0,0.22), rgba(255,255,255,0.25))`
         let randWord = ''
+        let hint = ''
+        let randTrans = ''
 
         function nextQuestion() {
             randWord = keys[Math.trunc(Math.random() * keys.length)]
+            randTrans = wordsObject[randWord]
+            hint = ''
+            while (hint.indexOf('▮') < 0) {
+                hint = randTrans.split`,`.pop().slice(1, wordsObject[randWord].length - 1).split``.map(n => Math.random() > 0.2 ? '▮' : n).join``
+            }
+
             document.querySelector('#qs').innerHTML = randWord
         }
 
@@ -101,35 +159,75 @@
 
         let btn = document.querySelector('#chck')
 
+
+
         if (score === -1) {
             nextQuestion()
             score++
         }
 
         btn.addEventListener('click', () => {
-            // console.log(document.querySelector('#ans').value)
-            if (`/${input.value}/` == wordsObject[randWord] || input.value == "ca") {
-                console.log(`${input.value} was the correct answer. Well done!`)
+            if (wordsObject[randWord].split`,`.includes(`/${input.value}/`) || input.value === "ca") {
                 btn.style.backgroundColor = 'green'
+                answers[question] = {
+                    "res": 1,
+                    "ans": input.value,
+                    "qs": randWord
+                }
                 setTimeout(() => { btn.style.background = btnDefaultStyle }, 1000)
                 score++
             }
             else {
-                console.log("Lmfao you're a failure...")
-                console.log(input.value + " | The correct answer is: " + wordsObject[randWord])
+                answers[question] = {
+                    "res": 0,
+                    "input": input.value,
+                    "ca": randTrans,
+                    "qs": randWord
+                }
                 btn.style.backgroundColor = 'red'
                 setTimeout(() => { btn.style.background = btnDefaultStyle }, 1000)
             }
             if (question === 10) {
-                alert(`${score} out of 10`)
-                score = 0
-                question = 0
+                question = -1
+                let result = ``
+                result += `<h2>Round ${round + 1}</h2>`
+                for (let n of answers) {
+                    if (!n.res) {
+                        if (n.input === "") {
+                            result += `
+                            <p>
+                            You have not entered an answer!
+                            </p>`
+                        }
+                        else {
+                            result += `
+                        <p class="wrong">
+                        For "${n.qs}" the correct answer should be ${n.ca.replaceAll(',', ' or')} instead of "${n.input}"
+                        <p>`
+                        }
+                    }
+                    else {
+                        result += `<p class="correct">
+                        "${n.ans}" is the correct transcription for "${n.qs}" 
+                        </p>`
+                    }
+                    answers = []
+                }
                 round++
+                result += `<span id="grade">${score}/10</span>`
+                overlay.innerHTML += result
+                overlay.style.display = "block"
+                const clsBtnOverlay = document.querySelector('#cls-overlay-btn')
+                clsBtnOverlay.addEventListener('click', () => {
+                    overlay.style.display = "none"
+                })
+                score = 0
             }
             input.value = ''
             document.querySelector('#score-panel').innerHTML = score
             document.querySelector('#round-panel').innerHTML = round
-            question++
+            ++question
+            console.log(answers)
             nextQuestion()
         })
 
@@ -140,17 +238,19 @@
                 input.value = input.value.slice(0, carrotPos) + key.innerText + input.value.slice(carrotPos, input.value.length)
             })
         }
-        let hint = 0;
-        function generateHint(str) {
-            if (hint === 0) {
-                hint++
-                return str[0] + str.slice(1, str.length).split``.map(n => Math.random() > 0.5 ? '▮' : n).join``
-            }
-            return "You've used all of your hints!"
-        }
 
-        document.querySelector('#hnt').addEventListener('click', () => {
-            alert(generateHint(randWord))
+        hintBtn = document.querySelector('#hnt')
+
+        const popup = document.querySelector("#myPopup")
+
+        hintBtn.addEventListener('mouseover', () => {
+            popup.innerHTML = hint
+            popup.classList.add("show")
+        })
+
+        hintBtn.addEventListener('mouseleave', () => {
+            popup.innerHTML = hint
+            popup.classList.remove("show")
         })
 
         const specialBtns = document.querySelectorAll("em span")
@@ -160,6 +260,58 @@
         specialBtns[1].addEventListener('click', () => {
             input.value = input.value.slice(0, input.value.length - 1)
         })
+
+        const sideNav = document.querySelector('#sdnv')
+        const overlay = document.querySelector('#overlay')
+        const container = document.querySelector('.container')
+        const main = document.querySelector('.main')
+        let sideNavDisplay = false;
+
+        function openSideNavLarge() {
+            if (screen.width <= 965) {
+                sideNav.style.width = "100%"
+            }
+            else {
+                sideNav.style.width = "400px"
+                container.style.marginLeft = "-400px";
+            }
+        }
+        function collapseSideNavLarge() {
+            sideNav.style.width = "0"
+            container.style.marginLeft = '0'
+        }
+        function openSideNavSmall() {
+            sideNav.style.width = "100%"
+        }
+        function collapseSideNavSmall() {
+            sideNav.style.width = "0"
+        }
+
+        document.querySelector('#sdnvbtn').addEventListener('click', () => {
+            if (sideNavDisplay === true) {
+                sideNavDisplay = false
+                collapseSideNavLarge()
+            }
+            else {
+                sideNavDisplay = true
+                openSideNavLarge()
+            }
+        })
+
+        document.querySelector('#cls-btn').addEventListener('click', () => {
+            sideNavDisplay = false
+            collapseSideNavLarge()
+
+        })
+
+        main.addEventListener('click', () => {
+            if (sideNavDisplay === true) {
+                sideNavDisplay = false
+                collapseSideNavLarge()
+            }
+        })
+
+
 
         console.log(wordsObject.a)
 
