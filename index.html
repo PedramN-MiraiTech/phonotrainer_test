@@ -148,7 +148,7 @@
             randTrans = wordsObject[randWord]
             hint = ''
             while (hint.indexOf('▮') < 0) {
-                hint = randTrans.split`,`.pop().slice(1, wordsObject[randWord].length - 1).split``.map(n => Math.random() > 0.2 ? '▮' : n).join``
+                hint = randTrans.split`,`.pop().slice(1, wordsObject[randWord].length - 1).split``.map(n => Math.random() > 0.5 ? '▮' : n).join``
             }
 
             document.querySelector('#qs').innerHTML = randWord
