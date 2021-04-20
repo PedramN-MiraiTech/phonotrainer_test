@@ -373,10 +373,6 @@ a:hover {
     background-color: rgba(255,255,255,.8);
 }
 
-.keyboard div em span {
-    color:yellow;
-}
-
 .keyboard div em span:hover{
     color:red;
 }
