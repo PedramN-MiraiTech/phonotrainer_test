@@ -146,6 +146,13 @@
         let hint = ''
         let randTrans = ''
 
+        function genOverlayClsBtn() {
+            const clsBtnOverlay = document.querySelector('#cls-overlay-btn')
+            clsBtnOverlay.addEventListener('click', () => {
+                overlay.style.display = "none"
+            })
+        }
+
         function nextQuestion() {
             randWord = keys[Math.trunc(Math.random() * keys.length)]
             randTrans = wordsObject[randWord]
@@ -222,10 +229,7 @@
                 result += `<span id="grade">${score}/10</span>`
                 overlay.innerHTML += result
                 overlay.style.display = "block"
-                const clsBtnOverlay = document.querySelector('#cls-overlay-btn')
-                clsBtnOverlay.addEventListener('click', () => {
-                    overlay.style.display = "none"
-                })
+                genOverlayClsBtn()
                 score = 0
             }
             input.value = ''
@@ -317,10 +321,7 @@
         })
 
         menu.addEventListener('click', () => {
-            const clsBtnOverlay = document.querySelector('#cls-overlay-btn')
-            clsBtnOverlay.addEventListener('click', () => {
-                overlay.style.display = "none"
-            })
+            genOverlayClsBtn()
             overlay.style.display = "block"
         })
 
