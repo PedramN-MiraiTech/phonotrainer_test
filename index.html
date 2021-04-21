@@ -115,6 +115,7 @@
                     <span class="char">p</span>
                     <span class="char">t</span>
                     <span class="char">s</span>
+                    <span class="char">z</span>
                     <span class="char">b</span>
                     <span class="char">m</span>
                     <span class="char">n</span>
@@ -148,8 +149,10 @@
             randWord = keys[Math.trunc(Math.random() * keys.length)]
             randTrans = wordsObject[randWord]
             hint = ''
+            let temp = ''
             while (hint.indexOf('▮') < 0) {
-                hint = randTrans.split`,`.pop().slice(1, wordsObject[randWord].length - 1).split``.map(n => Math.random() > 0.5 ? '▮' : n).join``
+                temp = randTrans.split`,`.pop()
+                hint = temp.slice(1, temp.length - 1).split``.map(n => Math.random() > 0.5 ? '▮' : n).join``
             }
 
             document.querySelector('#qs').innerHTML = randWord
