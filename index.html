@@ -317,6 +317,10 @@
         })
 
         menu.addEventListener('click', () => {
+            const clsBtnOverlay = document.querySelector('#cls-overlay-btn')
+            clsBtnOverlay.addEventListener('click', () => {
+                overlay.style.display = "none"
+            })
             overlay.style.display = "block"
         })
 
