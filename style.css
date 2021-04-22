@@ -459,7 +459,7 @@ details::selection, summary::selection {
     background-color: green;
 }
 
-details[open] summary ~ p,ul {
+details[open] summary ~ p,a {
   animation: sweep .5s ease-in-out;
 }
 
