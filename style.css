@@ -18,12 +18,15 @@
 h2 {
     text-align: center;
     padding: .8em;
+    background-color:#79d82c;
+    color:#333;
+    margin-bottom: .4em;
 }
 
 #overlay{
     position: fixed;
     display: block;
-    width: 99%; height: 99%;
+    width: 100%; height: 99%;
     transform: translate(-50%,-50%);
     top: 50%; left: 50%;
     padding: 0; margin: 0;
@@ -39,6 +42,7 @@ h2 {
 #overlay p {
     font-size: 1.5em;
     margin-left: 1em;
+    margin-right: 1em;
     padding-bottom:.3em;
 }
 
@@ -79,7 +83,6 @@ h2 {
     font-size: 2.5em;
     text-align: center;
     color:white;
-    border-bottom: 1px solid wheat;
     padding-bottom: 1em;
     padding-top:.8em;
 }
@@ -471,7 +474,7 @@ details p {
     width: 80%;
 }
 
-details::selection, summary::selection {
+details::selection, summary::selection, p::selection {
     background-color: green;
 }
 
