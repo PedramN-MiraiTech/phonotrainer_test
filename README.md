@@ -1,4 +1,4 @@
-# phonotrainer_test
+# Phonotrainer
 Not the real app (**yet**)
 
 # Credits
